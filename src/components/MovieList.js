@@ -7,8 +7,6 @@ class MovieList extends Component {
   render () {
     return (
       <div>
-        <header> Movie list </header>
-
         <ul style={{ listStyle: 'none' }}>
           {this._renderMovies()}
         </ul>

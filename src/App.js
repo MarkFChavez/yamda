@@ -2,6 +2,19 @@ import React, { Component } from 'react'
 import MovieList from './components/MovieList'
 import { popular, topRated, upcoming } from './helpers/api'
 
+import Button from 'material-ui/Button'
+import Grid from 'material-ui/Grid'
+import { withStyles } from 'material-ui/styles'
+
+const styles = theme => ({
+  large: {
+    fontSize: '40px',
+    fontWeight: 'bolder',
+  },
+  center: { textAlign: 'center' },
+  uppercase: { textTransform: 'uppercase' }
+})
+
 class App extends Component {
 
   constructor (props) {
@@ -18,18 +31,37 @@ class App extends Component {
   }
 
   render() {
-    return (
-      <div>
-        <h4> Yet Another Movie Database App </h4>
+    const { large, center, uppercase } = this.props.classes
 
-        {/* categories */}
-        <a href='#' onClick={this._getPopular}> popular </a> &nbsp;
-        <a href='#' onClick={this._getTopRated}> top rated </a> &nbsp;
-        <a href='#' onClick={this._getUpcoming}> upcoming </a>
+    return (
+      <Grid container>
+        <Grid item xs={12}>
+          <div className={center}>
+            <span className={large}> YAMDA. </span>
+
+            <div>
+              <span className={uppercase}> Yet Another Movie Database App </span>
+            </div>
+          </div>
+        </Grid>
+
+        <Grid container spacing={8} justify='center'>
+          <Grid item>
+            <Button raised color='primary' onClick={this._getPopular}> popular </Button>
+          </Grid>
+
+          <Grid item>
+            <Button raised color='primary' onClick={this._getTopRated}> top rated </Button>
+          </Grid>
+
+          <Grid item>
+            <Button raised color='primary' onClick={this._getUpcoming}> upcoming </Button>
+          </Grid>
+        </Grid>
 
         {/* list of movies here */}
         <MovieList movies={this.state.movies} />
-      </div>
+      </Grid>
     );
   }
 
@@ -51,4 +83,4 @@ class App extends Component {
 
 }
 
-export default App;
+export default withStyles(styles)(App);
