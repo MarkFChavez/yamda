@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 
 const IMAGE_PATH = 'https://image.tmdb.org/t/p/w185_and_h278_bestv2'
 
@@ -27,4 +28,8 @@ class MovieList extends Component {
 
 }
 
-export default MovieList
+function stateToProps ({ movies }) {
+  return { movies }
+}
+
+export default connect(stateToProps)(MovieList)
