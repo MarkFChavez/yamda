@@ -9,8 +9,8 @@ const IMAGE_PATH = 'https://image.tmdb.org/t/p/w185_and_h278_bestv2'
 const styles = {
   container: { flexGrow: 1 },
   moviesContainer: { marginTop: '10px' },
-  movie: { padding: '5px', marginTop: '10px' },
-  movieTitle: { textTransform: 'uppercase', fontWeight: 'bold' }
+  movie: { marginTop: '10px', padding: '5px' },
+  movieTitle: { textTransform: 'uppercase', fontWeight: 'bold', textDecoration: 'underline' }
 }
 
 class MovieList extends Component {
@@ -30,12 +30,20 @@ class MovieList extends Component {
   _renderMovies () {
     return this.props.movies.map(movie => {
       return (
-        <Paper key={movie.id} style={styles.movie}>
-          <Typography type='subheading'>
-            <span style={styles.movieTitle}>
-              {movie.title}
-            </span>
-          </Typography>
+        <Paper key={movie.id} style={styles.movie} elevation={6}>
+          <Grid container spacing={8}>
+            <Grid item xs>
+              <Typography type='subheading'>
+                <span style={styles.movieTitle}>
+                  {movie.title}
+                </span>
+              </Typography>
+
+              <div>
+                <span style={{ textAlign: 'justify' }}> {movie.overview} </span>
+              </div>
+            </Grid>
+          </Grid>
         </Paper>
       )
     })
