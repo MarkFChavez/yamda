@@ -2,18 +2,18 @@ import React, { Component } from 'react'
 import Grid from 'material-ui/Grid'
 import Button from 'material-ui/Button'
 import { connect } from 'react-redux'
-import { popular, topRated, upcoming } from '../helpers/api'
+import {
+  fetchPopularMovies,
+  fetchTopRatedMovies
+} from '../actions'
 
 class MovieButtons extends Component {
 
   constructor (props) {
     super(props)
 
-    /* bind methods */
     this._getPopular = this._getPopular.bind(this)
     this._getTopRated = this._getTopRated.bind(this)
-    this._getUpcoming = this._getUpcoming.bind(this)
-    this._setMovies = this._setMovies.bind(this)
   }
 
   render () {
@@ -28,28 +28,23 @@ class MovieButtons extends Component {
         </Grid>
 
         <Grid item>
-          <Button raised color='primary' onClick={this._getUpcoming}> upcoming </Button>
+          <Button raised color='primary'> upcoming </Button>
         </Grid>
     </Grid>
     )
   }
 
   _getPopular () {
-    popular().then(this._setMovies)
+    this.props.fetchPopularMovies()
   }
 
   _getTopRated () {
-    topRated().then(this._setMovies)
-  }
-
-  _getUpcoming () {
-    upcoming().then(this._setMovies)
-  }
-
-  _setMovies ({ results }) {
-    this.setState({ movies: results })
+    this.props.fetchTopRatedMovies()
   }
 
 }
 
-export default connect()(MovieButtons)
+export default connect(
+  null,
+  { fetchPopularMovies, fetchTopRatedMovies }
+)(MovieButtons)
