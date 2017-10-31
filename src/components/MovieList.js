@@ -6,13 +6,20 @@ import Typography from 'material-ui/Typography'
 
 const IMAGE_PATH = 'https://image.tmdb.org/t/p/w185_and_h278_bestv2'
 
+const styles = {
+  container: { flexGrow: 1 },
+  moviesContainer: { marginTop: '10px' },
+  movie: { padding: '5px', marginTop: '10px' },
+  movieTitle: { textTransform: 'uppercase', fontWeight: 'bold' }
+}
+
 class MovieList extends Component {
 
   render () {
     return (
-      <Grid container style={{ flexGrow: 1 }} justify='center'>
+      <Grid container style={styles.container} justify='center'>
         <Grid item xs={5}>
-          <div style={{ marginTop: '10px' }}>
+          <div style={styles.moviesContainer}>
             {this._renderMovies()}
           </div>
         </Grid>
@@ -23,9 +30,9 @@ class MovieList extends Component {
   _renderMovies () {
     return this.props.movies.map(movie => {
       return (
-        <Paper key={movie.id} style={{ textAlign: 'center', padding: '5px', marginTop: '10px' }}>
+        <Paper key={movie.id} style={styles.movie}>
           <Typography type='subheading'>
-            <span style={{ textTransform: 'uppercase', fontWeight: 'bold' }}>
+            <span style={styles.movieTitle}>
               {movie.title}
             </span>
           </Typography>

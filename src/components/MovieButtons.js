@@ -4,7 +4,8 @@ import Button from 'material-ui/Button'
 import { connect } from 'react-redux'
 import {
   fetchPopularMovies,
-  fetchTopRatedMovies
+  fetchTopRatedMovies,
+  fetchUpcomingMovies
 } from '../actions'
 
 class MovieButtons extends Component {
@@ -14,6 +15,7 @@ class MovieButtons extends Component {
 
     this._getPopular = this._getPopular.bind(this)
     this._getTopRated = this._getTopRated.bind(this)
+    this._getUpcoming = this._getUpcoming.bind(this)
   }
 
   render () {
@@ -28,7 +30,7 @@ class MovieButtons extends Component {
         </Grid>
 
         <Grid item>
-          <Button raised color='primary'> upcoming </Button>
+          <Button raised color='primary' onClick={this._getUpcoming}> upcoming </Button>
         </Grid>
     </Grid>
     )
@@ -42,9 +44,13 @@ class MovieButtons extends Component {
     this.props.fetchTopRatedMovies()
   }
 
+  _getUpcoming () {
+    this.props.fetchUpcomingMovies()
+  }
+
 }
 
 export default connect(
   null,
-  { fetchPopularMovies, fetchTopRatedMovies }
+  { fetchPopularMovies, fetchTopRatedMovies, fetchUpcomingMovies }
 )(MovieButtons)
