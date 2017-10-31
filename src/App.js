@@ -4,6 +4,7 @@ import MovieButtons from './components/MovieButtons'
 
 import Grid from 'material-ui/Grid'
 import { withStyles } from 'material-ui/styles'
+import logo from './assets/powered-by-rectangle-blue.svg'
 
 const styles = theme => ({
   large: {
@@ -30,7 +31,9 @@ class App extends Component {
             <span className={large}> YAMDA. </span>
 
             <div>
-              <span className={uppercase}> Yet Another Movie Database App </span>
+              <span className={uppercase}>
+                Yet Another Movie Database App
+              </span>
             </div>
           </div>
         </Grid>
@@ -40,6 +43,12 @@ class App extends Component {
 
         {/* list of movies here */}
         <MovieList />
+
+        <div style={{ position: 'absolute', bottom: '10px', right: '10px' }}>
+          <a href='https://www.themoviedb.org'>
+            <img src={logo} width={128} height={64} />
+          </a>
+        </div>
       </Grid>
     );
   }
