@@ -18,7 +18,7 @@ class MovieButtons extends Component {
     this._getUpcoming = this._getUpcoming.bind(this)
 
     this.state = {
-      selected: null
+      selected: 'popular'
     }
   }
 
@@ -26,32 +26,32 @@ class MovieButtons extends Component {
     return (
       <Grid container spacing={8} justify='center'>
         <Grid item>
-          <Button raised color='primary' onClick={this._getPopular}>
-            <span style={{ textDecoration: this.state.selected === 'popular' ? 'underline' : 'none' }}>
-              popular
-            </span>
+          <Button raised color={this.state.selected === 'popular' ? 'primary' : 'none'} onClick={this._getPopular}>
+            popular
           </Button>
         </Grid>
 
         <Grid item>
-          <Button raised color='primary' onClick={this._getTopRated}>
-            <span style={{ textDecoration: this.state.selected === 'top_rated' ? 'underline' : 'none' }}>
-              top rated
-            </span>
+          <Button raised color={this.state.selected === 'top_rated' ? 'primary' : 'none'} onClick={this._getTopRated}>
+            top rated
           </Button>
         </Grid>
 
         <Grid item>
-          <Button raised color='primary' onClick={this._getUpcoming}>
-            <span style={{ textDecoration: this.state.selected === 'upcoming' ? 'underline' : 'none' }}>
-              upcoming
-            </span>
+          <Button raised color={this.state.selected === 'upcoming' ? 'primary' : 'none'} onClick={this._getUpcoming}>
+            upcoming
           </Button>
         </Grid>
     </Grid>
     )
   }
 
+  /* lifecycle methods */
+  componentDidMount () {
+    this.props.fetchPopularMovies()
+  }
+
+  /* private functions */
   _getPopular () {
     this.props.fetchPopularMovies()
     this.setState({ selected: 'popular' })
