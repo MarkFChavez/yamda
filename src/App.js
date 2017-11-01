@@ -17,9 +17,9 @@ class App extends Component {
         <MovieButtons />
         <MovieList />
 
-        <div style={{ position: 'fixed', bottom: '10px', right: '10px' }}>
+        <div style={{ position: 'fixed', bottom: '10px', right: '0px' }}>
           <a href='https://www.themoviedb.org' target='_blank'>
-            <img src={logo} width={128} height={64} />
+            <img src={logo} width={92} height={64} />
           </a>
         </div>
       </Grid>
