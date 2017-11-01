@@ -35,9 +35,9 @@ class MovieList extends Component {
   }
 
   _renderMovies () {
-    if (this.props.fetchingMovies) {
+    if (!this.props.fetchingMovies) {
       return (
-        <div style={{ textAlign: 'center', marginTop: '50px' }}>
+        <div style={{ display: 'flex', justifyContent: 'center', marginTop: '50px' }}>
           <Spinner name='folding-cube' />
         </div>
       )
