@@ -17,6 +17,8 @@ function _onSuccess (dispatch, data) {
     type: 'SUCCESS_MOVIES_FETCHED',
     payload: data.results
   })
+
+  dispatch({ type: 'FETCHING_ENDED' })
 }
 
 function _onError (dispatch) {
@@ -24,9 +26,13 @@ function _onError (dispatch) {
     type: 'FAIL_MOVIES_FETCHED',
     payload: 'Something went wrong'
   })
+
+  dispatch({ type: 'FETCHING_ENDED' })
 }
 
 function _handlePromise(dispatch, promise) {
+  dispatch({ type: 'FETCHING_STARTED' }) // start loading
+
   promise
     .then(data => _onSuccess(dispatch, data))
     .catch(error => _onError(dispatch))

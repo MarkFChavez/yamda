@@ -4,6 +4,7 @@ import Grid from 'material-ui/Grid'
 import Paper from 'material-ui/Paper'
 import Typography from 'material-ui/Typography'
 import Chip from 'material-ui/Chip'
+import Spinner from 'react-spinkit'
 
 import genres from '../helpers/genres'
 
@@ -34,6 +35,14 @@ class MovieList extends Component {
   }
 
   _renderMovies () {
+    if (this.props.fetchingMovies) {
+      return (
+        <div style={{ textAlign: 'center', marginTop: '50px' }}>
+          <Spinner name='folding-cube' />
+        </div>
+      )
+    }
+
     return this.props.movies.map(movie => {
       return (
         <Paper key={movie.id} style={styles.movie} elevation={6}>
@@ -67,8 +76,8 @@ _renderGenres (movie) {
 
 }
 
-function stateToProps ({ movies }) {
-  return { movies }
+function stateToProps ({ movies, fetchingMovies }) {
+  return { movies, fetchingMovies }
 }
 
 export default connect(stateToProps)(MovieList)
