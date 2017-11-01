@@ -3,7 +3,7 @@ import MovieList from './components/MovieList'
 import MovieButtons from './components/MovieButtons'
 import Header from './components/Header'
 import Grid from 'material-ui/Grid'
-import logo from './assets/powered-by-rectangle-blue.svg'
+import logo from './assets/primary-blue.svg'
 
 class App extends Component {
 

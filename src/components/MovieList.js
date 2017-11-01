@@ -12,7 +12,7 @@ const IMAGE_PATH = 'https://image.tmdb.org/t/p/w185_and_h278_bestv2'
 const styles = {
   container: { flexGrow: 1 },
   moviesContainer: { marginTop: '10px' },
-  movie: { marginTop: '20px', padding: '5px' },
+  movie: { margin: '20px 5px 0px 5px', padding: '5px' },
   movieTitle: { textTransform: 'uppercase', fontWeight: 'bold', textDecoration: 'underline' },
   row: {
     display: 'flex',
@@ -26,7 +26,7 @@ class MovieList extends Component {
   render () {
     return (
       <Grid container justify='center'>
-        <Grid item xs={8}>
+        <Grid item lg={8} md={8} sm={8} xs={12}>
           {this._renderMovies()}
         </Grid>
       </Grid>
