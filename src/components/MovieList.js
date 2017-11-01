@@ -26,7 +26,7 @@ class MovieList extends Component {
 
   render () {
     return (
-      <Grid container justify='center'>
+      <Grid container spacing={0} justify='center'>
         <Grid item lg={8} md={8} sm={8} xs={12}>
           {this._renderMovies()}
         </Grid>
@@ -35,7 +35,7 @@ class MovieList extends Component {
   }
 
   _renderMovies () {
-    if (!this.props.fetchingMovies) {
+    if (this.props.fetchingMovies) {
       return (
         <div style={{ display: 'flex', justifyContent: 'center', marginTop: '50px' }}>
           <Spinner name='folding-cube' />
@@ -61,19 +61,18 @@ class MovieList extends Component {
           </div>
         </Paper>
       )
-  })
-}
-
-_renderGenres (movie) {
-  return movie.genre_ids.map(id => {
-    let genre = genres.find(genre => id === genre.id)
-
-    return (
-      <Chip label={genre.name} style={styles.chip} />
-    )
-  })
+    })
   }
 
+  _renderGenres (movie) {
+    return movie.genre_ids.map(id => {
+      let genre = genres.find(genre => id === genre.id)
+
+      return (
+        <Chip key={id} label={genre.name} style={styles.chip} />
+      )
+    })
+  }
 }
 
 function stateToProps ({ movies, fetchingMovies }) {

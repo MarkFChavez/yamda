@@ -24,25 +24,25 @@ class MovieButtons extends Component {
 
   render () {
     return (
-      <Grid container spacing={8} justify='center'>
+      <Grid container spacing={0} justify='center'>
         <Grid item>
-          <Button raised color={this.state.selected === 'popular' ? 'primary' : 'none'} onClick={this._getPopular}>
+          <Button raised color={this.state.selected === 'popular' ? 'primary' : 'default'} onClick={this._getPopular}>
             popular
           </Button>
         </Grid>
 
         <Grid item>
-          <Button raised color={this.state.selected === 'top_rated' ? 'primary' : 'none'} onClick={this._getTopRated}>
+          <Button raised color={this.state.selected === 'top_rated' ? 'primary' : 'default'} onClick={this._getTopRated}>
             top rated
           </Button>
         </Grid>
 
         <Grid item>
-          <Button raised color={this.state.selected === 'upcoming' ? 'primary' : 'none'} onClick={this._getUpcoming}>
+          <Button raised color={this.state.selected === 'upcoming' ? 'primary' : 'default'} onClick={this._getUpcoming}>
             upcoming
           </Button>
         </Grid>
-    </Grid>
+      </Grid>
     )
   }
 

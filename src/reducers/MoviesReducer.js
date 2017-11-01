@@ -5,7 +5,6 @@ const MoviesReducer = (state = [], action) => {
     default:
       return state
   }
-  return state
 }
 
 export default MoviesReducer
