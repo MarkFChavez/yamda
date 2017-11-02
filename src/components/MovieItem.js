@@ -1,21 +1,27 @@
 import React, { Component } from 'react'
 import Paper from "material-ui/Paper";
+import Card, { CardMedia, CardContent } from 'material-ui/Card';
 import Typography from "material-ui/Typography";
 import genres from "../helpers/genres";
 import Chip from "material-ui/Chip";
 
+const IMAGE_PATH = "https://image.tmdb.org/t/p/w185_and_h278_bestv2";
+
 const styles = {
-  movie: { margin: "10px 5px 0px 5px", padding: "5px" },
-  movieTitle: {
-    textTransform: "uppercase",
-    fontWeight: "bold",
-    textDecoration: "underline"
+  card: {
+    display: 'flex'
   },
-  row: {
-    display: "flex",
-    flexWrap: "wrap"
+  content: {
+    flex: '1 0 auto'
   },
-  chip: { margin: "2px" }
+  details: {
+    display: 'flex',
+    flexDirection: 'column'
+  },
+  cover: {
+    width: 151,
+    height: 151
+  }
 }
 
 class MovieItem extends Component {
@@ -24,38 +30,51 @@ class MovieItem extends Component {
     const { movie } = this.props
 
     return (
-      <Paper key={movie.id} style={styles.movie} elevation={6}>
-        {this._renderContent(movie)}
-      </Paper>
-    )
-  }
+      <div style={{ marginTop: '10px' }}>
 
-  _renderContent (movie) {
-    return (
-      <div>
-        <div>
-          <Typography type="subheading">
-            <span style={styles.movieTitle}> {movie.title} </span>
-          </Typography>
-        </div>
+        {/* CARD */}
+        <Card style={styles.card}>
 
-        <div style={styles.row}>{this._renderGenres(movie)}</div>
+          {/* <CardMedia
+            image={`${IMAGE_PATH}/${movie.poster_path}`}
+            title={movie.title}
+            style={styles.cover}
+          /> */}
 
-        <div>
-          <span style={{ textAlign: "justify" }}>
-            {movie.overview}
-          </span>
-        </div>
+          <div style={styles.details}>
+            {/* CARD CONTENT */}
+            <CardContent style={styles.content}>
+              <Typography type='headline'>
+                <strong> {movie.title.toUpperCase()} </strong>
+              </Typography>
+
+              {this._renderGenres(movie)}
+
+              <div style={{ marginTop: '10px' }}>
+                <Typography type='paragraph' align='justify'>
+                  {movie.overview}
+                </Typography>
+              </div>
+            </CardContent>
+          </div>
+
+        </Card>
+
       </div>
     )
   }
 
   _renderGenres(movie) {
-    return movie.genre_ids.map(id => {
+    const names = movie.genre_ids.map(id => {
       let genre = genres.find(genre => id === genre.id);
+      return genre.name.toUpperCase()
+    }).join(', ')
 
-      return <Chip key={id} label={genre.name} style={styles.chip} />;
-    });
+    return (
+      <Typography type='caption'>
+        <span> {names} </span>
+      </Typography>
+    )
   }
 
 }
