@@ -51,9 +51,9 @@ class MovieItem extends Component {
               {this._renderGenres(movie)}
 
               <div style={{ marginTop: '10px' }}>
-                <Typography type='paragraph' align='justify'>
-                  {movie.overview}
-                </Typography>
+                <p>
+                  <span> {movie.overview} </span>
+                </p>
               </div>
             </CardContent>
           </div>

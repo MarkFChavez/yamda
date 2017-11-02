@@ -39,7 +39,7 @@ class MovieList extends Component {
 
     return this.props.movies.map(movie => {
       return (
-        <MovieItem movie={movie} />
+        <MovieItem key={movie.id} movie={movie} />
       );
     });
   }

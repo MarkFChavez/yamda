@@ -5,7 +5,8 @@ import { connect } from 'react-redux'
 import {
   fetchPopularMovies,
   fetchTopRatedMovies,
-  fetchUpcomingMovies
+  fetchUpcomingMovies,
+  setSelectedCategory
 } from '../actions'
 
 class MovieButtons extends Component {
@@ -16,29 +17,25 @@ class MovieButtons extends Component {
     this._getPopular = this._getPopular.bind(this)
     this._getTopRated = this._getTopRated.bind(this)
     this._getUpcoming = this._getUpcoming.bind(this)
-
-    this.state = {
-      selected: 'popular'
-    }
   }
 
   render () {
     return (
       <Grid container spacing={0} justify='center'>
         <Grid item>
-          <Button raised color={this.state.selected === 'popular' ? 'primary' : 'default'} onClick={this._getPopular}>
+          <Button raised color={this.props.selectedCategory === 'popular' ? 'primary' : 'default'} onClick={this._getPopular}>
             popular
           </Button>
         </Grid>
 
         <Grid item>
-          <Button raised color={this.state.selected === 'top_rated' ? 'primary' : 'default'} onClick={this._getTopRated}>
+          <Button raised color={this.props.selectedCategory === 'top_rated' ? 'primary' : 'default'} onClick={this._getTopRated}>
             top rated
           </Button>
         </Grid>
 
         <Grid item>
-          <Button raised color={this.state.selected === 'upcoming' ? 'primary' : 'default'} onClick={this._getUpcoming}>
+          <Button raised color={this.props.selectedCategory === 'upcoming' ? 'primary' : 'default'} onClick={this._getUpcoming}>
             upcoming
           </Button>
         </Grid>
@@ -54,22 +51,26 @@ class MovieButtons extends Component {
   /* private functions */
   _getPopular () {
     this.props.fetchPopularMovies()
-    this.setState({ selected: 'popular' })
+    this.props.setSelectedCategory('popular')
   }
 
   _getTopRated () {
     this.props.fetchTopRatedMovies()
-    this.setState({ selected: 'top_rated' })
+    this.props.setSelectedCategory('top_rated')
   }
 
   _getUpcoming () {
     this.props.fetchUpcomingMovies()
-    this.setState({ selected: 'upcoming' })
+    this.props.setSelectedCategory('upcoming')
   }
 
 }
 
+function stateToProps (state) {
+  return { selectedCategory: state.selectedCategory }
+}
+
 export default connect(
-  null,
-  { fetchPopularMovies, fetchTopRatedMovies, fetchUpcomingMovies }
+  stateToProps,
+  { fetchPopularMovies, fetchTopRatedMovies, fetchUpcomingMovies, setSelectedCategory }
 )(MovieButtons)
