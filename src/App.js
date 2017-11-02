@@ -16,9 +16,7 @@ class App extends Component {
         </Grid>
 
         <MovieButtons />
-
         <Pagination />
-
         <MovieList />
 
         <div style={{ position: 'fixed', bottom: '10px', right: '0px' }}>

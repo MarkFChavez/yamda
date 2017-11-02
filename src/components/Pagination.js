@@ -9,6 +9,7 @@ class Pagination extends Component {
   constructor (props) {
     super(props)
 
+    this._prevPage = this._prevPage.bind(this)
     this._nextPage = this._nextPage.bind(this)
   }
 
@@ -16,7 +17,7 @@ class Pagination extends Component {
     return (
       <Grid style={{ marginTop: '10px' }} container spacing={0} justify='center'>
         <Grid item>
-          <Button raised dense color='default'>
+          <Button raised dense color='default' onClick={this._prevPage}>
             prev
           </Button>
         </Grid>
@@ -47,6 +48,26 @@ class Pagination extends Component {
         break
       default:
         this.props.fetchPopularMovies(next)
+    }
+  }
+
+  _prevPage () {
+    const prev = this.props.currentPage === 1 ? 1 : (this.props.currentPage - 1)
+
+    this.props.setCurrentPage(prev)
+
+    switch (this.props.selectedCategory) {
+      case 'popular':
+        this.props.fetchPopularMovies(prev)
+        break
+      case 'top_rated':
+        this.props.fetchTopRatedMovies(prev)
+        break
+      case 'upcoming':
+        this.props.fetchUpcomingMovies(prev)
+        break
+      default:
+        this.props.fetchPopularMovies(prev)
     }
   }
 
