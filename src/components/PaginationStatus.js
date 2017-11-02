@@ -5,6 +5,10 @@ import { connect } from "react-redux";
 
 class PaginationStatus extends Component {
   render() {
+    if (this.props.selectedCategory === 'upcoming') {
+      return null
+    }
+
     return (
       <Grid
         style={{ marginTop: "10px" }}
@@ -29,7 +33,8 @@ class PaginationStatus extends Component {
 function stateToProps(state) {
   return {
     totalPages: state.totalPages,
-    currentPage: state.currentPage
+    currentPage: state.currentPage,
+    selectedCategory: state.selectedCategory
   };
 }
 
