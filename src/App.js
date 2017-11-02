@@ -3,6 +3,7 @@ import MovieList from './components/MovieList'
 import MovieButtons from './components/MovieButtons'
 import Header from './components/Header'
 import Pagination from './components/Pagination'
+import PaginationStatus from './components/PaginationStatus'
 import Grid from 'material-ui/Grid'
 import logo from './assets/primary-blue.svg'
 
@@ -17,6 +18,7 @@ class App extends Component {
 
         <MovieButtons />
         <Pagination />
+        <PaginationStatus />
         <MovieList />
 
         <div style={{ position: 'fixed', bottom: '10px', right: '0px' }}>

@@ -16,7 +16,7 @@ const Header = () => {
       </div>
 
       <div>
-        Developed and built for you movie people.
+        Developed and built for you movie people!
         - <a href='http://markjoelchavez.com'> @mrkjlchvz </a>
       </div>
     </div>

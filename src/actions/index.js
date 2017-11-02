@@ -1,5 +1,13 @@
 import { popular, topRated, upcoming } from '../helpers/api'
 
+/* SET TOTAL PAGE */
+export function setTotalPage (totalPage) {
+  return {
+    type: 'SET_TOTAL_PAGE',
+    payload: totalPage
+  }
+}
+
 /* SET CURRENT PAGE */
 export function setCurrentPage (page) {
   return {
@@ -41,6 +49,11 @@ function _onSuccess (dispatch, data) {
     payload: data.page
   })
 
+  dispatch({
+    type: 'SET_TOTAL_PAGE',
+    payload: data.total_pages
+  })
+
   dispatch({ type: 'FETCHING_ENDED' })
 }
 
@@ -58,7 +71,6 @@ function _handlePromise(dispatch, promise) {
 
   promise
     .then(data => {
-      console.log(data)
       _onSuccess(dispatch, data)
     })
     .catch(error => _onError(dispatch))
