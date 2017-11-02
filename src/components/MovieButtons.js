@@ -6,7 +6,8 @@ import {
   fetchPopularMovies,
   fetchTopRatedMovies,
   fetchUpcomingMovies,
-  setSelectedCategory
+  setSelectedCategory,
+  setCurrentPage
 } from '../actions'
 
 class MovieButtons extends Component {
@@ -45,22 +46,25 @@ class MovieButtons extends Component {
 
   /* lifecycle methods */
   componentDidMount () {
-    this.props.fetchPopularMovies()
+    this.props.fetchPopularMovies(1)
   }
 
   /* private functions */
   _getPopular () {
-    this.props.fetchPopularMovies()
+    this.props.fetchPopularMovies(1)
+    this.props.setCurrentPage(1)
     this.props.setSelectedCategory('popular')
   }
 
   _getTopRated () {
-    this.props.fetchTopRatedMovies()
+    this.props.fetchTopRatedMovies(1)
+    this.props.setCurrentPage(1)
     this.props.setSelectedCategory('top_rated')
   }
 
   _getUpcoming () {
-    this.props.fetchUpcomingMovies()
+    this.props.fetchUpcomingMovies(1)
+    this.props.setCurrentPage(1)
     this.props.setSelectedCategory('upcoming')
   }
 
@@ -72,5 +76,5 @@ function stateToProps (state) {
 
 export default connect(
   stateToProps,
-  { fetchPopularMovies, fetchTopRatedMovies, fetchUpcomingMovies, setSelectedCategory }
+  { fetchPopularMovies, fetchTopRatedMovies, fetchUpcomingMovies, setSelectedCategory, setCurrentPage }
 )(MovieButtons)

@@ -1,5 +1,14 @@
 import { popular, topRated, upcoming } from '../helpers/api'
 
+/* SET CURRENT PAGE */
+export function setCurrentPage (page) {
+  return {
+    type: 'SET_PAGE',
+    payload: page
+  }
+}
+
+/* SELECTED CATEGORY */
 export function setSelectedCategory (category) {
   return {
     type: 'SET_CATEGORY',
@@ -7,16 +16,18 @@ export function setSelectedCategory (category) {
   }
 }
 
-export function fetchPopularMovies () {
-  return (dispatch) => _handlePromise(dispatch, popular())
+/* MOVIES */
+
+export function fetchPopularMovies (page = 1) {
+  return (dispatch) => _handlePromise(dispatch, popular(page))
 }
 
-export function fetchTopRatedMovies () {
-  return (dispatch) => _handlePromise(dispatch, topRated())
+export function fetchTopRatedMovies (page = 1) {
+  return (dispatch) => _handlePromise(dispatch, topRated(page))
 }
 
-export function fetchUpcomingMovies () {
-  return (dispatch) => _handlePromise(dispatch, upcoming())
+export function fetchUpcomingMovies (page = 1) {
+  return (dispatch) => _handlePromise(dispatch, upcoming(page))
 }
 
 function _onSuccess (dispatch, data) {
