@@ -3,6 +3,7 @@ import Paper from "material-ui/Paper"
 import Card, { CardMedia, CardContent } from "material-ui/Card"
 import Typography from "material-ui/Typography"
 import genres from "../helpers/genres"
+import Hidden from "material-ui/Hidden"
 
 const IMAGE_PATH = "https://image.tmdb.org/t/p/w185_and_h278_bestv2"
 
@@ -24,10 +25,12 @@ class MovieItem extends Component {
 
         <Card style={styles.card}>
 
-          <CardMedia
-            image={`${IMAGE_PATH}/${movie.poster_path}`}
-            title={movie.title}
-            style={styles.cover} />
+          <Hidden xsDown>
+            <CardMedia
+              image={`${IMAGE_PATH}/${movie.poster_path}`}
+              title={movie.title}
+              style={styles.cover} />
+          </Hidden>
 
           <div style={styles.details}>
             {/* CARD CONTENT */}
