@@ -8,31 +8,20 @@ import Chip from "material-ui/Chip";
 const IMAGE_PATH = "https://image.tmdb.org/t/p/w185_and_h278_bestv2";
 
 const styles = {
-  card: {
-    display: 'flex'
-  },
-  content: {
-    flex: '1 0 auto'
-  },
-  details: {
-    display: 'flex',
-    flexDirection: 'column'
-  },
-  cover: {
-    width: 151,
-    height: 151
-  }
+  card: { display: 'flex' },
+  content: { flex: '1 0 auto' },
+  details: { display: 'flex', flexDirection: 'column' },
+  cover: { width: 151, height: 151 }
 }
 
 class MovieItem extends Component {
 
   render () {
-    const { movie } = this.props
+    const movie = this.props.movie
 
     return (
       <div style={{ marginTop: '10px' }}>
 
-        {/* CARD */}
         <Card style={styles.card}>
 
           {/* <CardMedia
