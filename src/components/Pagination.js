@@ -30,7 +30,7 @@ class Pagination extends Component {
         </Grid>
 
         <Grid item>
-          <Button raised dense disabled={this.props.currentPage === this.props.totalPages} onClick={this._nextPage}> next </Button>
+          <Button raised dense disabled={this.props.currentPage >= this.props.totalPages} onClick={this._nextPage}> next </Button>
         </Grid>
       </Grid>
     )
