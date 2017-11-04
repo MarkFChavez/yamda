@@ -76,8 +76,8 @@ class MovieButtons extends Component {
 
 }
 
-function stateToProps (state) {
-  return { selectedCategory: state.selectedCategory }
+function stateToProps ({ selectedCategory }) {
+  return { selectedCategory }
 }
 
 export default connect(
