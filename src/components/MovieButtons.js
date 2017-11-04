@@ -24,19 +24,19 @@ class MovieButtons extends Component {
     return (
       <Grid container spacing={0} justify='center'>
         <Grid item>
-          <Button raised color={this.props.selectedCategory === 'popular' ? 'primary' : 'default'} onClick={this._getPopular}>
+          <Button raised color={this._getColor('popular')} onClick={this._getPopular}>
             popular
           </Button>
         </Grid>
 
         <Grid item>
-          <Button raised color={this.props.selectedCategory === 'top_rated' ? 'primary' : 'default'} onClick={this._getTopRated}>
+          <Button raised color={this._getColor('top_rated')} onClick={this._getTopRated}>
             top rated
           </Button>
         </Grid>
 
         <Grid item>
-          <Button raised color={this.props.selectedCategory === 'upcoming' ? 'primary' : 'default'} onClick={this._getUpcoming}>
+          <Button raised color={this._getColor('upcoming')} onClick={this._getUpcoming}>
             upcoming
           </Button>
         </Grid>
@@ -50,6 +50,12 @@ class MovieButtons extends Component {
   }
 
   /* private functions */
+  _getColor (category) {
+    return this.props.selectedCategory === category 
+      ? 'primary' 
+      : 'default'
+  }
+
   _getPopular () {
     this.props.fetchPopularMovies(1)
     this.props.setCurrentPage(1)
