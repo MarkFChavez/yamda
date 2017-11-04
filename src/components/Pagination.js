@@ -18,10 +18,6 @@ class Pagination extends Component {
   }
 
   render() {
-    if (this.props.selectedCategory === 'upcoming') {
-      return null
-    }
-
     return (
       <Grid
         style={{ marginTop: "10px" }}

@@ -10,7 +10,8 @@ const styles = {
   card: { display: 'flex' },
   content: { flex: '1 0 auto' },
   details: { display: 'flex', flexDirection: 'column' },
-  cover: { "min-width": 151, "min-height": 151 }
+  cover: { minWidth: 151, minHeight: 151 },
+  uppercase: { textTransform: 'uppercase' }
 }
 
 class MovieItem extends Component {
@@ -35,7 +36,16 @@ class MovieItem extends Component {
                 <strong> {movie.title.toUpperCase()} </strong>
               </Typography>
 
-              {this._renderGenres(movie)}
+
+              <div>
+                <small> 
+                  <u>RATING</u> {movie.vote_average}
+                </small>
+
+                <Typography type='caption'>
+                  <span style={styles.uppercase}> {this._getGenres(movie)} </span>
+                </Typography>
+              </div>
 
               <div style={{ marginTop: '10px' }}>
                 <p>
@@ -51,17 +61,11 @@ class MovieItem extends Component {
     )
   }
 
-  _renderGenres(movie) {
-    const names = movie.genre_ids.map(id => {
-      let genre = genres.find(genre => id === genre.id)
-      return genre.name.toUpperCase()
-    }).join(', ')
-
-    return (
-      <Typography type='caption'>
-        <span> {names} </span>
-      </Typography>
-    )
+  _getGenres(movie) {
+    return movie.genre_ids
+      .map(id => genres[`${id}`])
+      .filter(genre => genre !== undefined || genre !== null)
+      .join(", ")
   }
 
 }
