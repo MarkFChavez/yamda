@@ -26,11 +26,11 @@ class Pagination extends Component {
         justify="center"
       >
         <Grid item>
-          <Button raised dense onClick={this._prevPage}>  prev </Button>
+          <Button raised dense disabled={this.props.currentPage === 1} onClick={this._prevPage}>  prev </Button>
         </Grid>
 
         <Grid item>
-          <Button raised dense onClick={this._nextPage}> next </Button>
+          <Button raised dense disabled={this.props.currentPage === this.props.totalPages} onClick={this._nextPage}> next </Button>
         </Grid>
       </Grid>
     )
@@ -57,7 +57,7 @@ class Pagination extends Component {
   }
 
   _prevPage() {
-    const prev = this.props.currentPage === 1 ? 1 : this.props.currentPage - 1
+    const prev = this.props.currentPage - 1
 
     this.props.setCurrentPage(prev)
 
