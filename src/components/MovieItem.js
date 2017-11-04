@@ -1,17 +1,16 @@
-import React, { Component } from 'react'
-import Paper from "material-ui/Paper";
-import Card, { CardMedia, CardContent } from 'material-ui/Card';
-import Typography from "material-ui/Typography";
-import genres from "../helpers/genres";
-import Chip from "material-ui/Chip";
+import React, { Component } from "react"
+import Paper from "material-ui/Paper"
+import Card, { CardMedia, CardContent } from "material-ui/Card"
+import Typography from "material-ui/Typography"
+import genres from "../helpers/genres"
 
-const IMAGE_PATH = "https://image.tmdb.org/t/p/w185_and_h278_bestv2";
+const IMAGE_PATH = "https://image.tmdb.org/t/p/w185_and_h278_bestv2"
 
 const styles = {
   card: { display: 'flex' },
   content: { flex: '1 0 auto' },
   details: { display: 'flex', flexDirection: 'column' },
-  cover: { width: 151, height: 151 }
+  cover: { "min-width": 151, "min-height": 151 }
 }
 
 class MovieItem extends Component {
@@ -24,11 +23,10 @@ class MovieItem extends Component {
 
         <Card style={styles.card}>
 
-          {/* <CardMedia
+          <CardMedia
             image={`${IMAGE_PATH}/${movie.poster_path}`}
             title={movie.title}
-            style={styles.cover}
-          /> */}
+            style={styles.cover} />
 
           <div style={styles.details}>
             {/* CARD CONTENT */}
@@ -55,7 +53,7 @@ class MovieItem extends Component {
 
   _renderGenres(movie) {
     const names = movie.genre_ids.map(id => {
-      let genre = genres.find(genre => id === genre.id);
+      let genre = genres.find(genre => id === genre.id)
       return genre.name.toUpperCase()
     }).join(', ')
 
